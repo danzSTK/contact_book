@@ -19,10 +19,13 @@ const Editar = () => {
 
   const [nome, setNome] = useState(contato?.name)
   const [email, setEmail] = useState(contato?.email)
-  const [numero, setNumero] = useState(contato?.number)
+  const [numero, setNumero] = useState<number | string | undefined>(
+    contato?.number
+  )
 
   function editar(e: FormEvent) {
     e.preventDefault()
+
     const newContato: Contact = {
       name: String(nome),
       email: String(email),
@@ -76,7 +79,7 @@ const Editar = () => {
                 type="number"
                 placeholder="Número do contato..."
                 value={numero}
-                onChange={({ target }) => setNumero(Number(target))}
+                onChange={({ target }) => setNumero(target.value)}
                 required
               />
             </S.InputContainer>
